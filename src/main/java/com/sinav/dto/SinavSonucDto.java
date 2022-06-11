@@ -1,6 +1,5 @@
 package com.sinav.dto;
 
-import com.sinav.model.Sinav;
 import lombok.Data;
 
 import java.util.UUID;

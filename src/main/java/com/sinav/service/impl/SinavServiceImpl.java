@@ -10,7 +10,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Slf4j
@@ -29,7 +28,7 @@ public class SinavServiceImpl implements ISinav {
 
     @Override
     public SinavDto createSinav(SinavDto dto) {
-        Sinav sinav = repository.save(mapper.map(dto, Sinav.class));
+        var sinav = repository.save(mapper.map(dto, Sinav.class));
         if (sinav.getSinavId() != null) {
             log.info("Created Sinav: " + sinav.getSinavId());
             return mapper.map(sinav, SinavDto.class);
@@ -39,16 +38,16 @@ public class SinavServiceImpl implements ISinav {
 
     @Override
     public SinavDto updateSinav(String sinavId, SinavDto dto) {
-        Optional<Sinav> sinavs = repository.findById(UUID.fromString(sinavId));
+        var sinavs = repository.findById(UUID.fromString(sinavId));
 
-        Sinav sinavToUpdate = sinavs.map(val -> {
+        var sinavToUpdate = sinavs.map(val -> {
             val.setSinavAdi(dto.getSinavAdi() != null ? dto.getSinavAdi() : val.getSinavAdi());
             val.setSinavTarihi(dto.getSinavTarihi() != null ? dto.getSinavTarihi() : val.getSinavTarihi());
             val.setSinavYayinda(dto.getSinavYayinda() != null ? dto.getSinavYayinda() : val.getSinavYayinda());
             return val;
         }).orElseThrow(IllegalArgumentException::new);
 
-        Sinav sinav = repository.save(sinavToUpdate);
+        var sinav = repository.save(sinavToUpdate);
         log.info("Sinav Updated: " + sinavId);
         return mapper.map(sinav, SinavDto.class);
     }

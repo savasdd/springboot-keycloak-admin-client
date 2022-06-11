@@ -2,7 +2,6 @@ package com.sinav.service.impl;
 
 import com.sinav.dto.SinavDto;
 import com.sinav.dto.SinavSonucDto;
-import com.sinav.model.Sinav;
 import com.sinav.model.SinavSonuc;
 import com.sinav.repository.SinavRepository;
 import com.sinav.repository.SinavSonucRepository;
@@ -13,7 +12,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Slf4j
@@ -39,10 +37,10 @@ public class SinavSonucServiceImpl implements ISinavSonuc {
 
     @Override
     public SinavSonucDto createSonuc(SinavSonucDto dto) {
-        Optional<Sinav> sinav = sinavRepository.findById(dto.getSinav().getSinavId());
+        var sinav = sinavRepository.findById(dto.getSinav().getSinavId());
         dto.setSinav(mapper.map(sinav.get(), SinavDto.class));
 
-        SinavSonuc sonuc = repository.save(mapper.map(dto, SinavSonuc.class));
+        var sonuc = repository.save(mapper.map(dto, SinavSonuc.class));
         if (sonuc.getSonucId() != null) {
             log.info("SinavSonuc Created: " + sonuc.getSonucId());
             return mapper.map(sonuc, SinavSonucDto.class);
@@ -52,9 +50,9 @@ public class SinavSonucServiceImpl implements ISinavSonuc {
 
     @Override
     public SinavSonucDto updateSonuc(String sonucId, SinavSonucDto dto) {
-        Optional<SinavSonuc> sonucs = repository.findById(UUID.fromString(sonucId));
+        var sonucs = repository.findById(UUID.fromString(sonucId));
 
-        SinavSonuc sonucToUpdate = sonucs.map(val -> {
+        var sonucToUpdate = sonucs.map(val -> {
             val.setAd(dto.getAd() != null ? dto.getAd() : val.getAd());
             val.setSoyad(dto.getSoyad() != null ? dto.getSoyad() : val.getSoyad());
             val.setTcKimlikNo(dto.getTcKimlikNo() != null ? dto.getTcKimlikNo() : val.getTcKimlikNo());
@@ -62,7 +60,7 @@ public class SinavSonucServiceImpl implements ISinavSonuc {
             return val;
         }).orElseThrow(IllegalArgumentException::new);
 
-        SinavSonuc sonuc = repository.save(sonucToUpdate);
+        var sonuc = repository.save(sonucToUpdate);
         log.info("SinavSonuc Updated:" + sonucId);
 
         return mapper.map(sonuc, SinavSonucDto.class);
