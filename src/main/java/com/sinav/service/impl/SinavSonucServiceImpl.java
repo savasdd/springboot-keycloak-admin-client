@@ -35,4 +35,9 @@ public class SinavSonucServiceImpl implements ISinavSonuc {
     public void deleteSonuc(String sonucId) {
 
     }
+
+    @Override
+    public List<SinavSonucDto> getSonucBySinav(String id) {
+        return null;
+    }
 }

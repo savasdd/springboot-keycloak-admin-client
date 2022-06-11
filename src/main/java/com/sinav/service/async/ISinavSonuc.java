@@ -14,4 +14,5 @@ public interface ISinavSonuc {
 
     public void deleteSonuc(String sonucId);
 
+    public List<SinavSonucDto>  getSonucBySinav(String id);
 }
