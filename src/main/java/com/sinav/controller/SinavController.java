@@ -33,7 +33,7 @@ public class SinavController {
 
     @Transactional
     @PutMapping("/sinavs/{id}")
-    public ResponseEntity<SinavDto> putSinav(@PathVariable String id, @RequestBody SinavDto dto) throws Exception {
+    public ResponseEntity<SinavDto> putSinav(@PathVariable String id, @RequestBody SinavDto dto)  {
         return new ResponseEntity<>(service.getSinav().updateSinav(id, dto), HttpStatus.OK);
     }
 

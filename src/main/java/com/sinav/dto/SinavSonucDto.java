@@ -18,5 +18,5 @@ public class SinavSonucDto {
 
     private Double puan;
 
-    private Sinav sinav;
+    private SinavDto sinav;
 }

@@ -25,7 +25,7 @@ public class SinavSonucController {
     }
 
     @Validated
-    @GetMapping("/sinavsonucs/{id}")
+    @GetMapping("/sinavs/sinavsonucs/{id}")
     public ResponseEntity<List<SinavSonucDto>> getSonucBySinav(@PathVariable String id) {
         return new ResponseEntity<>(service.getSonuc().getSonucBySinav(id), HttpStatus.OK);
     }

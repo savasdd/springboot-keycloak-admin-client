@@ -10,7 +10,7 @@ public interface ISinav {
 
     public SinavDto createSinav(SinavDto dto);
 
-    public SinavDto updateSinav(String sinavId, SinavDto dto) throws Exception;
+    public SinavDto updateSinav(String sinavId, SinavDto dto);
 
     public void deleteSinav(String sinavId);
 }

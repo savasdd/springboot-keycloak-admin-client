@@ -38,7 +38,7 @@ public class SinavServiceImpl implements ISinav {
     }
 
     @Override
-    public SinavDto updateSinav(String sinavId, SinavDto dto) throws Exception {
+    public SinavDto updateSinav(String sinavId, SinavDto dto) {
         Optional<Sinav> sinavs = repository.findById(UUID.fromString(sinavId));
 
         Sinav sinavToUpdate = sinavs.map(val -> {
@@ -46,7 +46,7 @@ public class SinavServiceImpl implements ISinav {
             val.setSinavTarihi(dto.getSinavTarihi() != null ? dto.getSinavTarihi() : val.getSinavTarihi());
             val.setSinavYayinda(dto.getSinavYayinda() != null ? dto.getSinavYayinda() : val.getSinavYayinda());
             return val;
-        }).orElseThrow(IllegalAccessException::new);
+        }).orElseThrow(IllegalArgumentException::new);
 
         Sinav sinav = repository.save(sinavToUpdate);
         log.info("Sinav Updated: " + sinavId);
