@@ -2,13 +2,13 @@ package com.sinav.service;
 
 import com.sinav.service.async.IKeycloakGroupService;
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Data
 @Service
+@RequiredArgsConstructor
 public class KeycloakGroupService {
 
-    @Autowired
-    private IKeycloakGroupService group;
+    private final IKeycloakGroupService group;
 }

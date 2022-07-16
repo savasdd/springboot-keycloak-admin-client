@@ -2,13 +2,13 @@ package com.sinav.service;
 
 import com.sinav.service.async.ISinav;
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Data
 @Service
+@RequiredArgsConstructor
 public class SinavService {
 
-    @Autowired
-    private ISinav sinav;
+    private final ISinav sinav;
 }
