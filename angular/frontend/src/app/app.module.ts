@@ -1,27 +1,82 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AppRoutingModule } from './app-routing.module';
+import { NgModule } from '@angular/core';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+
+import { IconModule, IconSetModule, IconSetService } from '@coreui/icons-angular';
+
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  suppressScrollX: true
+};
+
 import { AppComponent } from './app.component';
-import { ConfirmationService, MessageService } from 'primeng/api';
-import { ErrorInterceptor } from '../app/core/interceptors/error.interceptor';
-import { BearerAuthInterceptor } from '../app/core/interceptors/bearer-auth.interceptor';
+
+// Import containers
+import { DefaultLayoutComponent } from './containers';
+
+import { P404Component } from './views/error/404.component';
+import { P500Component } from './views/error/500.component';
+import { SharedModule } from "./views/shared/shared.module";
+
+
+const APP_CONTAINERS = [
+  DefaultLayoutComponent
+];
+
+import {
+  AppAsideModule,
+  AppBreadcrumbModule,
+  AppHeaderModule,
+  AppFooterModule,
+  AppSidebarModule,
+} from '@coreui/angular';
+
+// Import routing module
+import { AppRoutingModule } from './app.routing';
+
+// Import 3rd party components
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { ChartsModule } from 'ng2-charts';
+import { DefaultHeaderComponent } from './containers/default-header/default-header.component';
+import { DefaultFooterComponent } from './containers/default-footer/default-footer.component';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
-    HttpClientModule,
-
+    AppAsideModule,
+    AppBreadcrumbModule.forRoot(),
+    AppFooterModule,
+    AppHeaderModule,
+    AppSidebarModule,
+    PerfectScrollbarModule,
+    BsDropdownModule.forRoot(),
+    TabsModule.forRoot(),
+    ChartsModule,
+    IconModule,
+    SharedModule,
+    IconSetModule.forRoot(),
+  ],
+  declarations: [
+    AppComponent,
+    ...APP_CONTAINERS,
+    P404Component,
+    P500Component,
+    DefaultHeaderComponent,
+    DefaultFooterComponent,
   ],
   providers: [
-    MessageService,
-    ConfirmationService,
-    { provide: HTTP_INTERCEPTORS, useClass: BearerAuthInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    {
+      provide: LocationStrategy,
+      useClass: HashLocationStrategy
+    },
+    IconSetService,
   ],
   bootstrap: [AppComponent]
 })

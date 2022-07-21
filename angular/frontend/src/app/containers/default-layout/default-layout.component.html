@@ -1,0 +1,26 @@
+<app-default-header></app-default-header>
+<div class="app-body">
+  <!-- NAVBAR MENÜSÜ -->
+  <!-- <app-sidebar #appSidebar [fixed]="true" [display]="'lg'" [minimized]="sidebarMinimized"
+    (minimizedChange)="toggleMinimize($event)">
+    <app-sidebar-nav [navItems]="navItems" [perfectScrollbar] [disabled]="appSidebar.minimized"></app-sidebar-nav>
+    <app-sidebar-minimizer></app-sidebar-minimizer>
+  </app-sidebar> -->
+
+  <!-- Main content -->
+  <main class="main">
+    <cui-breadcrumb>
+      <li class="breadcrumb-menu d-md-down-none">
+        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+        </div>
+      </li>
+    </cui-breadcrumb>
+    <div class="container-fluid">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+</div>
+<app-footer class="layout-footer flex align-items-center flex-wrap justify-content-center shadow-2">
+  <span><a href="https://coreui.io">2022 KEYCLOAK</a></span>
+  <span class="ml-auto">API</span>
+</app-footer>

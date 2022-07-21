@@ -1,0 +1,47 @@
+<div class="p-md-5 mb-2 bg-gradient-info">
+  <main class="main d-flex p-4">
+    <div class="container p-4">
+      <div class="row">
+        <div class="col-md-6 mx-auto">
+          <div class="text-center">
+            <img src="assets/img/logo_login.png"
+              style="height: 12rem; width: 12rem; margin-bottom: 6vh; background: white; border-radius: 500vh; box-shadow: 0px 6px 23px -5px rgba(0, 0, 0, 0.49); background-position: center center !important; background-repeat: no-repeat !important; background-size: 90%;"
+              alt="admin@bootstrapmaster.com" />
+          </div>
+          <div class="card-group">
+            <div class="card p-4"
+              style="border-radius: 2vh; box-shadow: 0px 6px 23px -5px rgba(0, 0, 0, 0.49); background-position: center center !important; background-repeat: no-repeat !important;">
+              <div class="card-body">
+                <form>
+                  <div class="mb-5">
+                    <h1 class="text-center">KEYCLOAK YÖNETİM SİSTEMİ</h1>
+                  </div>
+                  <p class="text-muted"></p>
+                  <div class="col-12 input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="icon-user"></i></span>
+                    </div>
+                    <input class="form-control" placeholder="Kullanıcı adi" autocomplete="kullanici.username"
+                      name="kullanici.username" [(ngModel)]="kullanici.username" required>
+                  </div>
+                  <div class="col-12 input-group mb-4">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="icon-lock"></i></span>
+                    </div>
+                    <input type="password" class="form-control" placeholder="Şifre" autocomplete="kullanici.password"
+                      name="kullanici.password" [(ngModel)]="kullanici.password" (keyup.enter)="login()" required>
+                  </div>
+                  <div class="row">
+                    <div class="col-12 text-center">
+                      <button type="button" class="btn btn-primary px-4" (click)="login()">Giriş</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
