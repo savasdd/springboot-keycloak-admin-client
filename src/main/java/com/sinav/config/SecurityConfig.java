@@ -93,6 +93,8 @@ public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
         http = http.cors().and().csrf().disable();
         http.authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/api/auth").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/gorevs").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/gorevs").permitAll()
                 //.antMatchers("/api/sinavs").hasRole("SINAV_ROL_2")
                 //.anyRequest().permitAll();
                 //.anyRequest().denyAll();

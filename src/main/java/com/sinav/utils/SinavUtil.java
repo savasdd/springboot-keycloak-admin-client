@@ -5,5 +5,5 @@ import org.springframework.stereotype.Component;
 @Component
 public class SinavUtil {
 
-    public static final String KEYLOACK_ROL = "SINAV_ROL";
+    public static final String KEYLOACK_ROL = "SINAV_ROLU";
 }
