@@ -19,8 +19,8 @@ public class ScheduledTasks {
     private UserGorevService service;
 
     // @Scheduled(fixedRate = 50000)
-    @Scheduled(cron = "0 0/3 * * * ?") // 3 dk
-    //@Scheduled(cron = "0 30 23 * * ?") // 23:30
+    //@Scheduled(cron = "0 0/3 * * * ?") // 3 dk
+    @Scheduled(cron = "0 30 23 * * ?") // 23:30
     public void reportCurrentTime() {
         log.info("======> START JOBS [ " + df.format(new Date()) + " ] <======");
         service.getGorev().addAraGorev();
